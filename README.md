@@ -3,7 +3,7 @@ Documentation of de facto standards for chess variants.
 
 ## PGN
 https://ia802908.us.archive.org/26/items/pgn-standard-1994-03-12/PGN_standard_1994-03-12.txt
-## FEN
+## [FEN](/fen.md)
 https://ia802908.us.archive.org/26/items/pgn-standard-1994-03-12/PGN_standard_1994-03-12.txt
 ## SFEN
 ## EPD
