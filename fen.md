@@ -1,5 +1,7 @@
 
-## FEN
+# FEN
+
+## Standard fields
 
 ### 1. Piece placement
 * shogi promotions `+`
@@ -24,5 +26,7 @@
 * counting ply
 
 ### 6. Fullmove clock
+
+## Non-standard fields
 
 ### 7. Lichess check count (optional)
