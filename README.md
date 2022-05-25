@@ -19,12 +19,21 @@ The [Extended Position Description](https://www.chessprogramming.org/Extended_Po
 ## Move description
 ### SAN
 The [Short/Standard Algebraic Notation](https://www.chessprogramming.org/Algebraic_Chess_Notation#Standard_Algebraic_Notation_.28SAN.29) for standard chess is specified in the [PGN standard](https://ia802908.us.archive.org/26/items/pgn-standard-1994-03-12/PGN_standard_1994-03-12.txt). For chess variants there are several extensions in order to represent special moves, such as piece drops and gating.
+* Piece drops like in crazyhouse are indicated by adding an `@` before the target square, e.g., `P@f7`.
+* Drops of pieces in promoted state such as in kyoto shogi, are denoted using a `+`, e.g., `+P@a3`.
+* S-Chess style gating moves are indicated by adding the capital gating piece character after a `/`, e.g., `Qd2/E`. If gating happens to a square other than the origin square, the square is indicated after the gating piece, like `Qa4/Pd4`.
+
 ### Coordinate notation
 The [pure coordinate notation](https://www.chessprogramming.org/Algebraic_Chess_Notation#Pure_coordinate_notation) is specified as part of the [UCI protocol](https://www.shredderchess.com/chess-features/uci-universal-chess-interface.html) (also [here](http://wbec-ridderkerk.nl/html/UCIProtocol.html)). For chess variants it requires extensions in order to describe piece drops, gating, and shogi-style piece promotions.
+* Piece drops like in crazyhouse are indicated by replacing the origin square by the capital letter of the dropped piece and `@`, e.g., `P@f7`.
+* Drops of pieces in promoted state such as in kyoto shogi, are denoted using a `+`, e.g., `+P@a3`.
+* Shogi style piece promotions are denoted with a `+`, e.g., `b2h8+`. Corresponding demotions are denoted with a `-`.
+* S-Chess style gating moves use the same notation as promotions to indicate the gated piece, e.g., `d1d2e`. For castling if gating happens on the rook square, it is encoded as rook captures king, e.g., `h1e1h`. In games where the gating happens on arbitrary squares, e.g., game of the amazons, the square is indicated after the gating piece, like `a4a5pd5`.
+* When a castling move is ambiguous because the king could pseudo-legally move to the target square without castling, such as in Diana chess, the "king captures rook" chess960 castling notation is used.
 
 ## Engine protocols
 ### UCI
-The [Universal Chess Interface](https://en.wikipedia.org/wiki/Universal_Chess_Interface) is a chess engine protocol specified [here](https://www.shredderchess.com/chess-features/uci-universal-chess-interface.html) ([older version](http://wbec-ridderkerk.nl/html/UCIProtocol.html)). For chess variants it only requires an additional convention which UCI option to use to set the variant, which is `UCI_Variant`, and it uses the generalized FEN and coordinate notation as described above. The `UCI_Chess960` option for chess variants is used as a general switch to Chess960 style castling rules and notation in both the FEN (`KQkq` -> `AHah`) and coordinate notation (`e1g1` -> `e1h1`).
+The [Universal Chess Interface](https://en.wikipedia.org/wiki/Universal_Chess_Interface) is a chess engine protocol specified [here](https://www.shredderchess.com/chess-features/uci-universal-chess-interface.html) ([older version](http://wbec-ridderkerk.nl/html/UCIProtocol.html)). For chess variants it only requires an additional convention which UCI option to use to set the variant, which is `UCI_Variant`, and it uses the generalized FEN and coordinate notation as described above. The `UCI_Chess960` option for chess variants is used as a general switch to Chess960 style castling rules and notation in both the FEN (`KQkq` -> `AHah`) and coordinate notation (`e1g1` -> `e1h1`). Note that as for standard chess UCI a `position` command is required before starting a search, i.e., updating `UCI_Variant` is not required to set up the new variant yet.
 
 ### USI
 The Universal Shogi Protocol is a dialect of the UCI protocol for Shogi defined in the [USI protocol specification](http://hgm.nubati.net/usi.html).
