@@ -14,8 +14,10 @@
 The color field is denoted as `w` or `b` as for standard chess FENs.
 
 ### 3. Castling
-* gating
-* extra moves (cambodian)
+In chess variants the FEN castling field retains its original role, but might be extendend with additional information.
+* For S-Chess style gating rights, the castling field contains the letter of each first rank square where gating is still possible. Redundancies with castling fields are removed, since castling always indicates an unmoved king and rook. E.g., the S-Chess starting position is `rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR[HEhe] w KQBCDFGkqbcdfg - 0 1`.
+  * Note that in the case of 960 variants with gating the situation can arise that gating on the rook square is still allowed, but castling no longer is due to a king move. In this case an `A` castling right in contrast to normal Chess960 doesn't refer to a castling right but only to gating, and only if, e.g., `AE` is present it means that both the rook and king are unmoved, so castling is possible as well. Therefore castling is encoded as the combination of a king and rook gating right.
+* Special extra moves that are lost once a piece moves for the first time like in Ouk Chatrang can also be encoded in the castling field with the letter of the file of the respective piece. 
 
 ### 4. En passant
 * berolina
