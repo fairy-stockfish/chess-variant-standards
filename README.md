@@ -38,7 +38,7 @@ The [Universal Chess Interface](https://en.wikipedia.org/wiki/Universal_Chess_In
 ### USI
 The Universal Shogi Protocol is a dialect of the UCI protocol for Shogi defined in the [USI protocol specification](http://hgm.nubati.net/usi.html).
 ### UCCI
-The Universal Chinese Chess Interface is a dialect of the UCI protocol for Xiangqi. It skips the `name` and `value` keywords in the reporting of options and instead requires option names not to contain spaces in order to disambiguate parsing of tokens. It uses a move coordinate notation using ranks 0-9 instead of 1-10.
+The [Universal Chinese Chess Interface](https://www.xqbase.com/protocol/cchess_ucci.htm) is a dialect of the UCI protocol for Xiangqi. It skips the `name` and `value` keywords in the reporting of options and instead requires option names not to contain spaces in order to disambiguate parsing of tokens. It uses a move coordinate notation using ranks 0-9 instead of 1-10.
 ### UCI-cyclone
 The UCI-cyclone protocol is a modification of the UCI protocol for Xiangqi. It uses a move coordinate notation using ranks 0-9 instead of 1-10 and it skips the `position` keyword in commands to set up the board position.
 ### CECP
