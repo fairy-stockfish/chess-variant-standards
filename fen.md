@@ -4,11 +4,14 @@
 ## Standard fields
 
 ### 1. Piece placement
-* Pieces after a shogi style promotion are **prefixed** by a `+`.
-* Promoted pawns are **suffixed** by `~` if the promotion status is relevant for the game, e.g., for crazyhouse since promoted pawns demote on capture when going to the opponent's hand. In games where promoted pawns are commonly differentiated for displaying purposes, like makruk, this information can optionally be provided.
+* Pieces after a shogi style promotion are **prefixed** by a `+`, e.g., `+p` for a tokin.
+* Promoted pawns are **suffixed** by `~` if the promotion status is relevant for the game, e.g., for crazyhouse since promoted pawns demote on capture when going to the opponent's hand. In games where promoted pawns are commonly differentiated for displaying purposes, like makruk, this information can optionally be provided but the receiving side may discard it.
 * In games with 10 or more ranks, the spaces between pieces on the board in an FEN can reach double digit numbers. In this case the FEN still contains the space as this double digit number, e.g., `rnabqkbcnr/pppppppppp/10/10/10/10/PPPPPPPPPP/RNABQKBCNR w KQkq - 0 1`.
 * Pieces in hand are specified after the board pieces surrounded by square brackets `[]`, e.g., `rnbqkb1r/ppp2ppp/5p2/3p4/8/8/PPPP1PPP/RNBQKBNR[Np] w KQkq - 0 4`. It is common to list the hand pieces in inverse order of value, but the order is not defined per specification. The notation for pieces in hand applies to S-Chess style gating pieces as well.
   * Note that a common exception to this standard is that lichess uses a `/` instead of square brackets to separate the hand pieces from the board pieces, e.g., `rnbqkb1r/ppp2ppp/5p2/3p4/8/8/PPPP1PPP/RNBQKBNR/Np w KQkq - 0 4`. It is recommended to support this non-standard notation as input, but it is discouraged to follow this when outputting FENs.
+* Inaccessible squares are represented by
+  * `*` for wall squares that are neither accessible nor traversable by hoppers/sliders. This may, e.g., be used to represent non-rectangular boards.
+  * `_` for hole squares that are not accessible but traversable by sliders/hoppers.
 
 ### 2. Color
 The color field is denoted as `w` or `b` as for standard chess FENs.
@@ -17,7 +20,7 @@ The color field is denoted as `w` or `b` as for standard chess FENs.
 In chess variants the FEN castling field retains its original role, but might be extendend with additional information.
 * For S-Chess style gating rights, the castling field contains the letter of each first rank square where gating is still possible. Redundancies with castling fields are removed, since castling always indicates an unmoved king and rook. E.g., the S-Chess starting position is `rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR[HEhe] w KQBCDFGkqbcdfg - 0 1`.
   * Note that in the case of 960 variants with gating the situation can arise that gating on the rook square is still allowed, but castling no longer is due to a king move. In this case an `A` castling right in contrast to normal Chess960 doesn't refer to a castling right but only to gating, and only if, e.g., `AE` is present it means that both the rook and king are unmoved, so castling is possible as well. Therefore castling is encoded as the combination of a king and rook gating right.
-* Special extra moves that are lost once a piece moves for the first time like in Ouk Chatrang can also be encoded in the castling field with the letter of the file of the respective piece. 
+* Special extra moves that are lost once a piece moves for the first time like in Ouk Chatrang can also be encoded in the castling field with the letter of the file of the respective piece.
 
 ### 4. En passant
 The en passant field can naturally be generalized by using the respective crossed square of any pawn double step, irrespective of its rank. Note that in the CECP/xboard protocol, for FENs of variants with 10 ranks the en passant square uses a zero-based rank counting, just like the moves. For berolina pawns the en passant field contains both the crossed square and the target square of the berolina double step, e.g., `e3d4`, in order to disambiguate between two pawns that might both have crossed the same square via a double step, e.g., moves f2-d4 and d2-f4 for the e3 square.
