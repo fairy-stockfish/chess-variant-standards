@@ -21,7 +21,7 @@ The [Extended Position Description](https://www.chessprogramming.org/Extended_Po
 The [Short/Standard Algebraic Notation](https://www.chessprogramming.org/Algebraic_Chess_Notation#Standard_Algebraic_Notation_.28SAN.29) for standard chess is specified in the [PGN standard](https://ia802908.us.archive.org/26/items/pgn-standard-1994-03-12/PGN_standard_1994-03-12.txt). For chess variants there are several extensions in order to represent special moves, such as piece drops and gating.
 * Piece drops like in crazyhouse are indicated by adding an `@` before the target square, e.g., `P@f7`.
 * Drops of pieces in promoted state such as in kyoto shogi, are denoted using a `+`, e.g., `+P@a3`.
-* S-Chess style gating moves are indicated by adding the capital gating piece character after a `/`, e.g., `Qd2/E`. If gating happens to a square other than the origin square, the square is indicated after the gating piece, like `Qa4/Pd4`.
+* S-Chess style gating moves are indicated by adding the capital gating piece character after a `/`, e.g., `Qd2/E`. If gating happens to a square other than the origin square, the square is indicated after the gating piece, like `Qa4/Pd4`. This is also the case when the gating would otherwise be ambiguous, such as in case of castling due to the option of gating on king or rook, e.g., `0-0/Eh1`.
 
 ### Coordinate notation
 The [pure coordinate notation](https://www.chessprogramming.org/Algebraic_Chess_Notation#Pure_coordinate_notation) is specified as part of the [UCI protocol](https://www.shredderchess.com/chess-features/uci-universal-chess-interface.html) (also [here](http://wbec-ridderkerk.nl/html/UCIProtocol.html)). For chess variants it requires extensions in order to describe piece drops, gating, and shogi-style piece promotions.
